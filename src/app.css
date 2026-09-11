@@ -1,3 +1,15 @@
 .mm {
     color: skyblue;
 }
+
+.admin {
+    width: 200px;
+    height: 20px;
+    background-color: green;
+}
+
+.login {
+    width: 300px;
+    height: 30px;
+    background-color: gray;
+}
