@@ -1,5 +1,5 @@
 import {EditOutlined, PlusOutlined, SafetyCertificateOutlined} from '@ant-design/icons'
-import {Button, Card, Col, Form, Input, List, message, Modal, Row, Space, Tag, Tree, Typography} from 'antd'
+import {Button, Card, Col, Form, Input, Listy, message, Modal, Row, Space, Tag, Tree, Typography} from 'antd'
 import {useState} from 'react'
 import {permissionTree, roles as initialRoles} from '../mock/data'
 import type {Role} from '../types'
@@ -36,7 +36,16 @@ export default function RolesPage() {
         <Row gutter={[16, 16]}>
             <Col xs={24} xl={9}>
                 <Card title="角色列表" extra={<Button type="primary" icon={<PlusOutlined />} onClick={() => openEditor()}>新增角色</Button>} className="role-list-card">
-                    <List dataSource={roles} renderItem={(role) => <List.Item className={selectedRole.id === role.id ? 'role-list-item selected' : 'role-list-item'} onClick={() => setSelectedRole(role)} actions={[<Button key="edit" type="text" size="small" icon={<EditOutlined />} onClick={(event) => { event.stopPropagation(); openEditor(role) }}>编辑</Button>]}><List.Item.Meta avatar={<span className="role-icon"><SafetyCertificateOutlined /></span>} title={<Typography.Text strong>{role.name}</Typography.Text>} description={<span>{role.description}<br />{role.memberCount} 位成员</span>} /></List.Item>} />
+                    <Listy
+                        items={roles}
+                        rowKey="id"
+                        virtual={false}
+                        itemRender={(role) => <div className={selectedRole.id === role.id ? 'role-list-item selected' : 'role-list-item'} onClick={() => setSelectedRole(role)}>
+                            <span className="role-icon"><SafetyCertificateOutlined /></span>
+                            <div className="role-list-item-content"><Typography.Text strong>{role.name}</Typography.Text><span className="role-list-item-description">{role.description}<br />{role.memberCount} 位成员</span></div>
+                            <Button type="text" size="small" icon={<EditOutlined />} onClick={(event) => { event.stopPropagation(); openEditor(role) }}>编辑</Button>
+                        </div>}
+                    />
                 </Card>
             </Col>
             <Col xs={24} xl={15}>
