@@ -40,7 +40,7 @@ export default function ContentPage() {
         {title: '操作', key: 'actions', width: 160, render: (_, content) => <Space size={4}><Button type="link" size="small" icon={<EyeOutlined />} onClick={() => message.info(`正在预览「${content.title}」`)}>预览</Button><Button type="link" size="small" icon={<EditOutlined />} onClick={() => openEditor(content)}>编辑</Button></Space>},
     ]
     return (
-        <Space direction="vertical" size={16} className="page-stack">
+        <Space orientation="vertical" size={16} className="page-stack">
             <Card className="filter-card">
                 <div className="filter-toolbar"><Space wrap><Input allowClear placeholder="搜索内容标题" prefix={<SearchOutlined />} value={keyword} onChange={(event) => setKeyword(event.target.value)} className="search-input" /><Select value={status} onChange={setStatus} options={['全部', '已发布', '待审核', '草稿'].map((value) => ({value, label: `状态：${value}`}))} className="status-select" /></Space><Button type="primary" icon={<FileAddOutlined />} onClick={() => openEditor()}>新建内容</Button></div>
             </Card>

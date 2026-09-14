@@ -109,7 +109,7 @@ export default function AdminLayout() {
                 <div className="header-left">
                     <div className={collapsed ? 'brand brand-collapsed' : 'brand'}>
                         <div className="brand-mark">O</div>
-                        {!collapsed && <span>OneOps 管理台</span>}
+                        {!collapsed && <span>One Ops</span>}
                     </div>
                     <Space size={16}>
                         <Button type="text" className="collapse-trigger" aria-label="切换侧栏" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} onClick={() => setCollapsed((value) => !value)} />
@@ -132,7 +132,7 @@ export default function AdminLayout() {
                 <Sider collapsible collapsed={collapsed} trigger={null} width={248} className="admin-sider">
                     <Menu
                         mode="inline"
-                        theme="dark"
+                        theme="light"
                         selectedKeys={[current.key]}
                         items={navigation.map(({key, icon, label}) => ({key, icon, label}))}
                         onClick={({key}) => openTab(key)}

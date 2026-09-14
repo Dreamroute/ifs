@@ -41,7 +41,7 @@ export default function RolesPage() {
             </Col>
             <Col xs={24} xl={15}>
                 <Card title="角色权限" extra={<Button type="primary" icon={<EditOutlined />} onClick={() => openEditor(selectedRole)}>编辑权限</Button>} className="permission-card">
-                    <Space direction="vertical" size={16} className="page-stack">
+                    <Space orientation="vertical" size={16} className="page-stack">
                         <div className="role-detail-head"><span className="role-icon large"><SafetyCertificateOutlined /></span><div><Typography.Title level={4}>{selectedRole.name}</Typography.Title><Typography.Text type="secondary">{selectedRole.description}</Typography.Text></div><Tag color="blue">{selectedRole.memberCount} 位成员</Tag></div>
                         <div><Typography.Text strong>已授权模块</Typography.Text><p className="permission-note">该角色可访问以下功能模块。编辑后仅在本次演示会话内生效。</p><Tree checkedKeys={selectedRole.permissions} selectable={false} checkable treeData={permissionTree} /></div>
                     </Space>

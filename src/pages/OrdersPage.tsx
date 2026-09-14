@@ -25,7 +25,7 @@ export default function OrdersPage() {
         {title: '操作', key: 'actions', width: 95, render: (_, order) => <Button type="link" size="small" icon={<EyeOutlined />} onClick={() => setSelectedOrder(order)}>详情</Button>},
     ]
     return (
-        <Space direction="vertical" size={16} className="page-stack">
+        <Space orientation="vertical" size={16} className="page-stack">
             <Card className="filter-card">
                 <Space wrap>
                     <Input allowClear placeholder="搜索订单号、用户名称或邮箱" prefix={<SearchOutlined />} value={keyword} onChange={(event) => setKeyword(event.target.value)} className="search-input" />
@@ -35,8 +35,8 @@ export default function OrdersPage() {
             <Card className="table-card" title="订单列表" extra={<Typography.Text type="secondary">共 {filteredOrders.length} 笔订单</Typography.Text>}>
                 <Table rowKey="id" size="middle" columns={columns} dataSource={filteredOrders} scroll={{x: 980}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: (total) => `共 ${total} 条`}} />
             </Card>
-            <Drawer title="订单详情" open={Boolean(selectedOrder)} onClose={() => setSelectedOrder(null)} width={460}>
-                {selectedOrder && <Space direction="vertical" size={22} className="detail-stack">
+            <Drawer title="订单详情" open={Boolean(selectedOrder)} onClose={() => setSelectedOrder(null)} size={460}>
+                {selectedOrder && <Space orientation="vertical" size={22} className="detail-stack">
                     <div><Typography.Text type="secondary">订单状态</Typography.Text><br /><Tag color={statusColor[selectedOrder.status]} className="large-status">{selectedOrder.status}</Tag></div>
                     <Descriptions column={1} colon={false} labelStyle={{width: 112, color: '#64748b'}} items={[
                         {key: 'id', label: '订单编号', children: selectedOrder.id},
