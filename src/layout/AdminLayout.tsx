@@ -105,40 +105,43 @@ export default function AdminLayout() {
 
     return (
         <Layout className="admin-shell">
-            <Sider collapsible collapsed={collapsed} trigger={null} width={248} className="admin-sider">
-                <div className="brand">
-                    <div className="brand-mark">O</div>
-                    {!collapsed && <span>OneOps 管理台</span>}
-                </div>
-                <Menu
-                    mode="inline"
-                    theme="dark"
-                    selectedKeys={[current.key]}
-                    items={navigation.map(({key, icon, label}) => ({key, icon, label}))}
-                    onClick={({key}) => openTab(key)}
-                    className="main-menu"
-                />
-                {!collapsed && <div className="sider-footer">© 2026 OneOps</div>}
-            </Sider>
-            <Layout>
-                <Header className="admin-header">
+            <Header className="admin-header">
+                <div className="header-left">
+                    <div className={collapsed ? 'brand brand-collapsed' : 'brand'}>
+                        <div className="brand-mark">O</div>
+                        {!collapsed && <span>OneOps 管理台</span>}
+                    </div>
                     <Space size={16}>
                         <Button type="text" className="collapse-trigger" aria-label="切换侧栏" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} onClick={() => setCollapsed((value) => !value)} />
                         <Breadcrumb items={breadcrumbItems} />
                     </Space>
-                    <Space size={20}>
-                        <Badge dot offset={[-2, 2]}>
-                            <Button type="text" className="header-icon" aria-label="通知" icon={<BellOutlined />} />
-                        </Badge>
-                        <Dropdown menu={{items: profileItems}} placement="bottomRight">
-                            <Button type="text" className="account-button">
-                                <Avatar size={32} className="account-avatar">管</Avatar>
-                                <span className="account-name">管理员</span>
-                            </Button>
-                        </Dropdown>
-                    </Space>
-                </Header>
-                <Content className="admin-content">
+                </div>
+                <Space size={20}>
+                    <Badge dot offset={[-2, 2]}>
+                        <Button type="text" className="header-icon" aria-label="通知" icon={<BellOutlined />} />
+                    </Badge>
+                    <Dropdown menu={{items: profileItems}} placement="bottomRight">
+                        <Button type="text" className="account-button">
+                            <Avatar size={32} className="account-avatar">管</Avatar>
+                            <span className="account-name">管理员</span>
+                        </Button>
+                    </Dropdown>
+                </Space>
+            </Header>
+            <Layout className="admin-body">
+                <Sider collapsible collapsed={collapsed} trigger={null} width={248} className="admin-sider">
+                    <Menu
+                        mode="inline"
+                        theme="dark"
+                        selectedKeys={[current.key]}
+                        items={navigation.map(({key, icon, label}) => ({key, icon, label}))}
+                        onClick={({key}) => openTab(key)}
+                        className="main-menu"
+                    />
+                    {!collapsed && <div className="sider-footer">© 2026 OneOps</div>}
+                </Sider>
+                <Layout>
+                    <Content className="admin-content">
                     <Tabs
                         activeKey={current.key}
                         className="workspace-tabs"
@@ -152,8 +155,9 @@ export default function AdminLayout() {
                         }}
                         tabBarExtraContent={{right: <Dropdown menu={{items: tabActions}} placement="bottomRight"><Button type="text" className="tab-actions" aria-label="页签操作" icon={<MoreOutlined />} /></Dropdown>}}
                     />
-                </Content>
-                <Outlet />
+                    </Content>
+                    <Outlet />
+                </Layout>
             </Layout>
         </Layout>
     )
