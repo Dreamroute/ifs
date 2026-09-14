@@ -6,9 +6,9 @@ button, input, textarea, select { font: inherit; }
 .admin-shell > .ant-layout, .admin-body { min-width: 0; }
 .admin-body { min-height: calc(100vh - 64px); }
 .admin-sider { position: sticky !important; top: 64px; height: calc(100vh - 64px); overflow: auto; background: #111c31 !important; }
-.brand { display: flex; align-items: center; gap: 12px; width: 248px; padding: 0 24px; color: #172033; font-size: 18px; font-weight: 700; white-space: nowrap; overflow: hidden; transition: width .2s; }
+.brand { display: flex; align-items: center; gap: 12px; width: 248px; height: 100%; padding: 0 24px; color: #172033; font-size: 18px; font-weight: 700; white-space: nowrap; overflow: hidden; border-right: 1px solid #dce5ef; transition: width .2s; }
 .brand-collapsed { width: 80px; justify-content: center; padding: 0; }
-.brand-mark { display: grid; place-items: center; flex: 0 0 30px; width: 30px; height: 30px; color: #fff; background: linear-gradient(135deg, #60a5fa, #2563eb); border-radius: 9px; font-size: 16px; box-shadow: 0 7px 16px rgb(37 99 235 / 28%); }
+.brand-mark { display: flex; align-items: center; justify-content: center; flex: 0 0 30px; width: 30px; height: 30px; color: #fff; background: linear-gradient(135deg, #60a5fa, #2563eb); border-radius: 9px; font-size: 16px; line-height: 1; box-shadow: 0 7px 16px rgb(37 99 235 / 28%); }
 .main-menu { background: transparent !important; border-inline-end: 0 !important; padding: 8px 10px; }
 .main-menu.ant-menu-dark .ant-menu-item { margin-block: 4px; width: calc(100% - 2px); color: #aab5ca; border-radius: 7px; }
 .main-menu.ant-menu-dark .ant-menu-item-selected { background: linear-gradient(90deg, #2563eb, #315fd1) !important; color: #fff; }
