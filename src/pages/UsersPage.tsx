@@ -53,15 +53,14 @@ export default function UsersPage() {
                     <Space wrap>
                         <Input allowClear placeholder="搜索姓名、邮箱或用户编号" prefix={<SearchOutlined />} value={keyword} onChange={event => setKeyword(event.target.value)} className="search-input" />
                         <Select value={status} onChange={setStatus} options={['全部', '正常', '待审核', '已禁用'].map(value => ({value, label: `状态：${value}`}))} className="status-select" />
+                        <Button onClick={() => { setKeyword(''); setStatus('全部') }} disabled={!keyword && status === '全部'}>重置</Button>
                     </Space>
                     <Button type="primary" icon={<PlusOutlined />} onClick={() => openEditor()}>新增用户</Button>
                 </div>
             </Card>
-            <Card className="table-card" title="用户列表" extra={<Typography.Text type="secondary">共 {filteredUsers.length} 位用户</Typography.Text>}>
-                <Table rowKey="id" size="middle" columns={columns} dataSource={filteredUsers} scroll={{x: 850}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
-            </Card>
+            <Table rowKey="id" size="middle" columns={columns} dataSource={filteredUsers} scroll={{x: 850}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
             <Drawer title="用户详情" open={Boolean(selectedUser)} onClose={() => setSelectedUser(null)} size={420}>
-                {selectedUser && <Space direction="vertical" size={22} className="detail-stack">
+                {selectedUser && <Space orientation="vertical" size={22} className="detail-stack">
                     <div className="profile-summary"><span className="profile-avatar">{selectedUser.name.slice(0, 1)}</span><div><Typography.Title level={4}>{selectedUser.name}</Typography.Title><Tag color={statusColor[selectedUser.status]}>{selectedUser.status}</Tag></div></div>
                     <div className="detail-list"><span>用户编号</span><b>{selectedUser.id}</b><span>邮箱</span><b>{selectedUser.email}</b><span>联系电话</span><b>{selectedUser.phone}</b><span>所属角色</span><b>{selectedUser.role}</b><span>创建时间</span><b>{selectedUser.createdAt}</b><span>最近活跃</span><b>{selectedUser.lastActiveAt}</b></div>
                 </Space>}

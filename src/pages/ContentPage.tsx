@@ -42,11 +42,9 @@ export default function ContentPage() {
     return (
         <Space orientation="vertical" size={8} className="page-stack">
             <Card className="filter-card">
-                <div className="filter-toolbar"><Space wrap><Input allowClear placeholder="搜索内容标题" prefix={<SearchOutlined />} value={keyword} onChange={event => setKeyword(event.target.value)} className="search-input" /><Select value={status} onChange={setStatus} options={['全部', '已发布', '待审核', '草稿'].map(value => ({value, label: `状态：${value}`}))} className="status-select" /></Space><Button type="primary" icon={<FileAddOutlined />} onClick={() => openEditor()}>新建内容</Button></div>
+                <div className="filter-toolbar"><Space wrap><Input allowClear placeholder="搜索内容标题" prefix={<SearchOutlined />} value={keyword} onChange={event => setKeyword(event.target.value)} className="search-input" /><Select value={status} onChange={setStatus} options={['全部', '已发布', '待审核', '草稿'].map(value => ({value, label: `状态：${value}`}))} className="status-select" /><Button onClick={() => { setKeyword(''); setStatus('全部') }} disabled={!keyword && status === '全部'}>重置</Button></Space><Button type="primary" icon={<FileAddOutlined />} onClick={() => openEditor()}>新建内容</Button></div>
             </Card>
-            <Card className="table-card" title="内容列表" extra={<Typography.Text type="secondary">共 {filteredContents.length} 篇内容</Typography.Text>}>
-                <Table rowKey="id" size="middle" columns={columns} dataSource={filteredContents} scroll={{x: 900}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
-            </Card>
+            <Table rowKey="id" size="middle" columns={columns} dataSource={filteredContents} scroll={{x: 900}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
             <Modal title={editingContent ? '编辑内容' : '新建内容'} open={modalOpen} onCancel={() => setModalOpen(false)} onOk={() => form.submit()} okText="保存" width={620}>
                 <Form form={form} layout="vertical" onFinish={saveContent}>
                     <Form.Item name="title" label="标题" rules={[{required: true, message: '请输入标题'}]}><Input placeholder="请输入内容标题" /></Form.Item>

@@ -30,11 +30,10 @@ export default function OrdersPage() {
                 <Space wrap>
                     <Input allowClear placeholder="搜索订单号、用户名称或邮箱" prefix={<SearchOutlined />} value={keyword} onChange={event => setKeyword(event.target.value)} className="search-input" />
                     <Select value={status} onChange={setStatus} options={['全部', '已完成', '处理中', '待付款', '已取消'].map(value => ({value, label: `状态：${value}`}))} className="status-select" />
+                    <Button onClick={() => { setKeyword(''); setStatus('全部') }} disabled={!keyword && status === '全部'}>重置</Button>
                 </Space>
             </Card>
-            <Card className="table-card" title="订单列表" extra={<Typography.Text type="secondary">共 {filteredOrders.length} 笔订单</Typography.Text>}>
-                <Table rowKey="id" size="middle" columns={columns} dataSource={filteredOrders} scroll={{x: 980}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
-            </Card>
+            <Table rowKey="id" size="middle" columns={columns} dataSource={filteredOrders} scroll={{x: 980}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
             <Drawer title="订单详情" open={Boolean(selectedOrder)} onClose={() => setSelectedOrder(null)} size={460}>
                 {selectedOrder && <Space orientation="vertical" size={22} className="detail-stack">
                     <div><Typography.Text type="secondary">订单状态</Typography.Text><br /><Tag color={statusColor[selectedOrder.status]} className="large-status">{selectedOrder.status}</Tag></div>
