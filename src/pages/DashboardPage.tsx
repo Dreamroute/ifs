@@ -21,7 +21,7 @@ export default function DashboardPage() {
     const pendingOrders = orders.filter(item => item.status === '待付款' || item.status === '处理中').length
 
     return (
-        <Space orientation="vertical" size={16} className="page-stack">
+        <Space orientation="vertical" size={8} className="page-stack">
             <Row gutter={[16, 16]}>
                 {metrics.map(metric => (
                     <Col xs={24} sm={12} xl={6} key={metric.title}>

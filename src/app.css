@@ -51,7 +51,7 @@ button, input, textarea, select { font: inherit; }
 .workspace-tabs .ant-tabs-extra-content { display: flex; align-items: center; padding-left: 8px; background: #f3f6fa; }
 .tab-actions { color: #64748b; font-size: 18px; }
 .workspace-tabs .ant-tabs-content-holder { overflow: visible; }
-.page-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.page-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0px; }
 .page-heading .ant-typography { margin: 0; }
 .page-heading .ant-typography-title { color: #172033; font-size: 22px; letter-spacing: -.2px; }
 .page-stack { display: flex; width: 100%; }

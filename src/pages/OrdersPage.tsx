@@ -25,7 +25,7 @@ export default function OrdersPage() {
         {title: '操作', key: 'actions', width: 95, render: (_, order) => <Button type="link" size="small" icon={<EyeOutlined />} onClick={() => setSelectedOrder(order)}>详情</Button>},
     ]
     return (
-        <Space orientation="vertical" size={16} className="page-stack">
+        <Space orientation="vertical" size={8} className="page-stack">
             <Card className="filter-card">
                 <Space wrap>
                     <Input allowClear placeholder="搜索订单号、用户名称或邮箱" prefix={<SearchOutlined />} value={keyword} onChange={event => setKeyword(event.target.value)} className="search-input" />

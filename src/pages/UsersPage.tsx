@@ -47,7 +47,7 @@ export default function UsersPage() {
     ]
 
     return (
-        <Space orientation="vertical" size={16} className="page-stack">
+        <Space orientation="vertical" size={8} className="page-stack">
             <Card className="filter-card">
                 <div className="filter-toolbar">
                     <Space wrap>
