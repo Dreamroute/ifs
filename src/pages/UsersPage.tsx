@@ -58,7 +58,7 @@ export default function UsersPage() {
                     <Button type="primary" icon={<PlusOutlined />} onClick={() => openEditor()}>新增用户</Button>
                 </div>
             </Card>
-            <Table rowKey="id" size="middle" columns={columns} dataSource={filteredUsers} scroll={{x: 850}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
+            <Table className="data-table" bordered rowClassName={(_, index) => index % 2 === 1 ? 'data-table-row-striped' : ''} rowKey="id" size="middle" columns={columns} dataSource={filteredUsers} scroll={{x: 850}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
             <Drawer title="用户详情" open={Boolean(selectedUser)} onClose={() => setSelectedUser(null)} size={420}>
                 {selectedUser && <Space orientation="vertical" size={22} className="detail-stack">
                     <div className="profile-summary"><span className="profile-avatar">{selectedUser.name.slice(0, 1)}</span><div><Typography.Title level={4}>{selectedUser.name}</Typography.Title><Tag color={statusColor[selectedUser.status]}>{selectedUser.status}</Tag></div></div>

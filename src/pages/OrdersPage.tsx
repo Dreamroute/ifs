@@ -33,7 +33,7 @@ export default function OrdersPage() {
                     <Button onClick={() => { setKeyword(''); setStatus('全部') }} disabled={!keyword && status === '全部'}>重置</Button>
                 </Space>
             </Card>
-            <Table rowKey="id" size="middle" columns={columns} dataSource={filteredOrders} scroll={{x: 980}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
+            <Table className="data-table" bordered rowClassName={(_, index) => index % 2 === 1 ? 'data-table-row-striped' : ''} rowKey="id" size="middle" columns={columns} dataSource={filteredOrders} scroll={{x: 980}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
             <Drawer title="订单详情" open={Boolean(selectedOrder)} onClose={() => setSelectedOrder(null)} size={460}>
                 {selectedOrder && <Space orientation="vertical" size={22} className="detail-stack">
                     <div><Typography.Text type="secondary">订单状态</Typography.Text><br /><Tag color={statusColor[selectedOrder.status]} className="large-status">{selectedOrder.status}</Tag></div>

@@ -75,7 +75,11 @@ button, input, textarea, select { font: inherit; }
 .todo-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 9px; } .todo-icon.warning { color: #d97706; background: #fff7e6; } .todo-icon.primary { color: #2563eb; background: #eaf1ff; } .todo-icon.success { color: #16a34a; background: #edf9f0; }
 .activity-list-item { display: flex; align-items: center; gap: 12px; padding-block: 8px; border-bottom: 1px solid #f0f0f0; font-size: 13px; } .activity-list-item:last-child { border-bottom: 0; } .activity-content { display: grid; gap: 3px; min-width: 0; } .activity-content small { color: #8c8c8c; font-size: 12px; }
 .filter-card .ant-card-body { padding: 12px 16px; } .search-input { width: 270px; } .status-select { width: 132px; }
-.table-card .ant-table-thead > tr > th { color: #52647a; background: #f1f5f9; border-bottom-color: #dce5ef; font-size: 12px; font-weight: 600; } .table-card .ant-table-tbody > tr > td { color: #475569; border-bottom-color: #e8eef4; }
+.data-table .ant-table-container { border-color: #d8e1ec !important; }
+.data-table .ant-table-thead > tr > th { color: #52647a; background: #f1f5f9; border-color: #d8e1ec !important; font-size: 12px; font-weight: 600; }
+.data-table .ant-table-tbody > tr > td { color: #475569; background: #fff; border-color: #e1e8f0 !important; }
+.data-table .ant-table-tbody > tr.data-table-row-striped > td { background: #f8fafc; }
+.data-table .ant-table-tbody > tr.ant-table-row:hover > td { background: #eef5ff !important; }
 .initial-avatar { display: grid; place-items: center; width: 34px; height: 34px; color: #2563eb; background: #eaf1ff; border-radius: 50%; font-weight: 700; }
 .detail-stack { width: 100%; } .profile-summary { display: flex; align-items: center; gap: 14px; } .profile-summary .ant-typography { margin: 0 0 6px; } .profile-avatar { display: grid; place-items: center; width: 58px; height: 58px; color: #2563eb; background: #eaf1ff; border-radius: 50%; font-size: 22px; font-weight: 700; }
 .detail-list { display: grid; grid-template-columns: 95px 1fr; gap: 18px 10px; padding: 20px; background: #f8fafc; border-radius: 9px; } .detail-list span { color: #64748b; } .detail-list b { color: #334155; font-weight: 500; }
