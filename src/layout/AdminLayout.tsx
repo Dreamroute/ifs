@@ -4,7 +4,6 @@ import {
     FileTextOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    MoreOutlined,
     SettingOutlined,
     ShoppingCartOutlined,
     TeamOutlined,
@@ -52,46 +51,36 @@ export default function AdminLayout() {
     const [collapsed, setCollapsed] = useState(false)
     const location = useLocation()
     const navigate = useNavigate()
-    const current = navigation.find((item) => item.key === location.pathname) ?? dashboardTab
+    const current = navigation.find(item => item.key === location.pathname) ?? dashboardTab
     const [tabs, setTabs] = useState<WorkspaceTab[]>(() => current.key === dashboardTab.key ? [dashboardTab] : [dashboardTab, current])
     const breadcrumbItems = useMemo(() => [
         {title: <Link to="/dashboard">首页</Link>},
         {title: current.label},
     ], [])
 
-    const workspaceTabs = tabs.some((item) => item.key === current.key) ? tabs : [...tabs, current]
+    const workspaceTabs = tabs.some(item => item.key === current.key) ? tabs : [...tabs, current]
 
     const openTab = (key: string) => {
-        const target = navigation.find((item) => item.key === key)
+        const target = navigation.find(item => item.key === key)
         if (!target) return
-        setTabs((items) => {
-            const currentTabs = items.some((item) => item.key === current.key) ? items : [...items, current]
-            return currentTabs.some((item) => item.key === target.key) ? currentTabs : [...currentTabs, target]
+        setTabs(items => {
+            const currentTabs = items.some(item => item.key === current.key) ? items : [...items, current]
+            return currentTabs.some(item => item.key === target.key) ? currentTabs : [...currentTabs, target]
         })
         navigate(target.key)
     }
 
     const closeTab = (key: string) => {
         if (key === dashboardTab.key) return
-        const closingIndex = workspaceTabs.findIndex((item) => item.key === key)
-        const remainingTabs = workspaceTabs.filter((item) => item.key !== key)
+        const closingIndex = workspaceTabs.findIndex(item => item.key === key)
+        const remainingTabs = workspaceTabs.filter(item => item.key !== key)
         setTabs(remainingTabs)
         if (key === current.key) {
             navigate(remainingTabs[closingIndex]?.key ?? remainingTabs[closingIndex - 1]?.key ?? dashboardTab.key)
         }
     }
 
-    const closeOtherTabs = () => {
-        const remainingTabs = current.key === dashboardTab.key ? [dashboardTab] : [dashboardTab, current]
-        setTabs(remainingTabs)
-    }
-
-    const closeAllTabs = () => {
-        setTabs([dashboardTab])
-        navigate(dashboardTab.key)
-    }
-
-    const tabItems: TabsProps['items'] = workspaceTabs.map((tab) => ({
+    const tabItems: TabsProps['items'] = workspaceTabs.map(tab => ({
         key: tab.key,
         label: <Space size={6}>{tab.icon}<span>{tab.label}</span></Space>,
         closable: tab.closable,
@@ -99,11 +88,6 @@ export default function AdminLayout() {
             <div className="page-heading"></div>
             {tab.content}</div>,
     }))
-
-    const tabActions: MenuProps['items'] = [
-        {key: 'close-other', label: '关闭其他页签', disabled: workspaceTabs.length <= 1, onClick: closeOtherTabs},
-        {key: 'close-all', label: '关闭全部页签', disabled: workspaceTabs.length <= 1, onClick: closeAllTabs},
-    ]
 
     return (
         <Layout className="admin-shell">
@@ -114,7 +98,7 @@ export default function AdminLayout() {
                         {!collapsed && <span>One Ops</span>}
                     </div>
                     <Space size={16}>
-                        <Button type="text" className="collapse-trigger" aria-label="切换侧栏" icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>} onClick={() => setCollapsed((value) => !value)}/>
+                        <Button type="text" className="collapse-trigger" aria-label="切换侧栏" icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>} onClick={() => setCollapsed(value => !value)}/>
                         <Breadcrumb items={breadcrumbItems}/>
                     </Space>
                 </div>
@@ -154,7 +138,6 @@ export default function AdminLayout() {
                         onEdit={(targetKey, action) => {
                             if (action === 'remove' && typeof targetKey === 'string') closeTab(targetKey)
                         }}
-                        tabBarExtraContent={{right: <Dropdown menu={{items: tabActions}} placement="bottomRight"><Button type="text" className="tab-actions" aria-label="页签操作" icon={<MoreOutlined/>}/></Dropdown>}}
                     />
                 </Content>
                 <Outlet/>

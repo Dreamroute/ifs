@@ -21,12 +21,12 @@ export default function RolesPage() {
     const saveRole = (values: Role) => {
         if (editingRole) {
             const updated = {...editingRole, ...values, permissions: checkedKeys}
-            setRoles((items) => items.map((item) => item.id === editingRole.id ? updated : item))
+            setRoles(items => items.map(item => item.id === editingRole.id ? updated : item))
             setSelectedRole(updated)
             message.success('角色权限已更新')
         } else {
             const created = {...values, id: `role-${Date.now()}`, memberCount: 0, permissions: checkedKeys}
-            setRoles((items) => [...items, created])
+            setRoles(items => [...items, created])
             setSelectedRole(created)
             message.success('已新增角色')
         }
@@ -40,10 +40,10 @@ export default function RolesPage() {
                         items={roles}
                         rowKey="id"
                         virtual={false}
-                        itemRender={(role) => <div className={selectedRole.id === role.id ? 'role-list-item selected' : 'role-list-item'} onClick={() => setSelectedRole(role)}>
+                        itemRender={role => <div className={selectedRole.id === role.id ? 'role-list-item selected' : 'role-list-item'} onClick={() => setSelectedRole(role)}>
                             <span className="role-icon"><SafetyCertificateOutlined /></span>
                             <div className="role-list-item-content"><Typography.Text strong>{role.name}</Typography.Text><span className="role-list-item-description">{role.description}<br />{role.memberCount} 位成员</span></div>
-                            <Button type="text" size="small" icon={<EditOutlined />} onClick={(event) => { event.stopPropagation(); openEditor(role) }}>编辑</Button>
+                            <Button type="text" size="small" icon={<EditOutlined />} onClick={event => { event.stopPropagation(); openEditor(role) }}>编辑</Button>
                         </div>}
                     />
                 </Card>
@@ -60,7 +60,7 @@ export default function RolesPage() {
                 <Form form={form} layout="vertical" onFinish={saveRole}>
                     <Form.Item name="name" label="角色名称" rules={[{required: true, message: '请输入角色名称'}]}><Input placeholder="例如：客户成功专员" /></Form.Item>
                     <Form.Item name="description" label="角色说明" rules={[{required: true, message: '请输入角色说明'}]}><Input.TextArea rows={2} placeholder="描述该角色可承担的工作" /></Form.Item>
-                    <Form.Item label="功能权限"><Tree checkable defaultExpandAll checkedKeys={checkedKeys} onCheck={(keys) => setCheckedKeys(keys as string[])} treeData={permissionTree} /></Form.Item>
+                    <Form.Item label="功能权限"><Tree checkable defaultExpandAll checkedKeys={checkedKeys} onCheck={keys => setCheckedKeys(keys as string[])} treeData={permissionTree} /></Form.Item>
                 </Form>
             </Modal>
         </Row>

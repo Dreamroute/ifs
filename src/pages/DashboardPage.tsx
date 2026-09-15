@@ -17,13 +17,13 @@ const orderDistribution = [
 ]
 
 export default function DashboardPage() {
-    const pendingUsers = users.filter((item) => item.status === '待审核').length
-    const pendingOrders = orders.filter((item) => item.status === '待付款' || item.status === '处理中').length
+    const pendingUsers = users.filter(item => item.status === '待审核').length
+    const pendingOrders = orders.filter(item => item.status === '待付款' || item.status === '处理中').length
 
     return (
         <Space orientation="vertical" size={16} className="page-stack">
             <Row gutter={[16, 16]}>
-                {metrics.map((metric) => (
+                {metrics.map(metric => (
                     <Col xs={24} sm={12} xl={6} key={metric.title}>
                         <Card className="metric-card" variant="borderless">
                             <div className="metric-top">
@@ -57,7 +57,7 @@ export default function DashboardPage() {
                     <Card title="订单状态分布" className="distribution-card">
                         <div className="order-total"><span>订单总数</span><strong>1,682</strong></div>
                         <Space orientation="vertical" size={14} className="full-width">
-                            {orderDistribution.map((item) => (
+                            {orderDistribution.map(item => (
                                 <div key={item.label}>
                                     <div className="distribution-label"><span><i style={{background: item.color}} />{item.label}</span><b>{item.percent}%</b></div>
                                     <Progress percent={item.percent} showInfo={false} strokeColor={item.color} railColor="#eef2f7" size="small" />
@@ -78,7 +78,7 @@ export default function DashboardPage() {
                 </Col>
                 <Col xs={24} xl={14}>
                     <Card title="最近动态" className="activity-card">
-                        <Listy items={activities} rowKey="id" itemRender={(activity) => (
+                        <Listy items={activities} rowKey="id" itemRender={activity => (
                             <div className="activity-list-item">
                                 <Avatar className="activity-avatar">{activity.avatar}</Avatar>
                                 <div className="activity-content">

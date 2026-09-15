@@ -16,8 +16,8 @@ export default function UsersPage() {
     const [editingUser, setEditingUser] = useState<User | null>(null)
     const [form] = Form.useForm<User>()
 
-    const filteredUsers = useMemo(() => users.filter((user) => {
-        const matchesKeyword = [user.name, user.email, user.id].some((value) => value.toLowerCase().includes(keyword.toLowerCase()))
+    const filteredUsers = useMemo(() => users.filter(user => {
+        const matchesKeyword = [user.name, user.email, user.id].some(value => value.toLowerCase().includes(keyword.toLowerCase()))
         return matchesKeyword && (status === '全部' || user.status === status)
     }), [users, keyword, status])
 
@@ -28,10 +28,10 @@ export default function UsersPage() {
     }
     const saveUser = (values: User) => {
         if (editingUser) {
-            setUsers((items) => items.map((item) => item.id === editingUser.id ? {...item, ...values} : item))
+            setUsers(items => items.map(item => item.id === editingUser.id ? {...item, ...values} : item))
             message.success('用户信息已更新')
         } else {
-            setUsers((items) => [{...values, id: `U-${10080 + items.length}`, createdAt: '刚刚', lastActiveAt: '未登录'}, ...items])
+            setUsers(items => [{...values, id: `U-${10080 + items.length}`, createdAt: '刚刚', lastActiveAt: '未登录'}, ...items])
             message.success('已新增用户')
         }
         setModalOpen(false)
@@ -51,14 +51,14 @@ export default function UsersPage() {
             <Card className="filter-card">
                 <div className="filter-toolbar">
                     <Space wrap>
-                        <Input allowClear placeholder="搜索姓名、邮箱或用户编号" prefix={<SearchOutlined />} value={keyword} onChange={(event) => setKeyword(event.target.value)} className="search-input" />
-                        <Select value={status} onChange={setStatus} options={['全部', '正常', '待审核', '已禁用'].map((value) => ({value, label: `状态：${value}`}))} className="status-select" />
+                        <Input allowClear placeholder="搜索姓名、邮箱或用户编号" prefix={<SearchOutlined />} value={keyword} onChange={event => setKeyword(event.target.value)} className="search-input" />
+                        <Select value={status} onChange={setStatus} options={['全部', '正常', '待审核', '已禁用'].map(value => ({value, label: `状态：${value}`}))} className="status-select" />
                     </Space>
                     <Button type="primary" icon={<PlusOutlined />} onClick={() => openEditor()}>新增用户</Button>
                 </div>
             </Card>
             <Card className="table-card" title="用户列表" extra={<Typography.Text type="secondary">共 {filteredUsers.length} 位用户</Typography.Text>}>
-                <Table rowKey="id" size="middle" columns={columns} dataSource={filteredUsers} scroll={{x: 850}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: (total) => `共 ${total} 条`}} />
+                <Table rowKey="id" size="middle" columns={columns} dataSource={filteredUsers} scroll={{x: 850}} pagination={{pageSize: 5, showSizeChanger: false, showTotal: total => `共 ${total} 条`}} />
             </Card>
             <Drawer title="用户详情" open={Boolean(selectedUser)} onClose={() => setSelectedUser(null)} size={420}>
                 {selectedUser && <Space direction="vertical" size={22} className="detail-stack">
@@ -71,8 +71,8 @@ export default function UsersPage() {
                     <Form.Item name="name" label="姓名" rules={[{required: true, message: '请输入姓名'}]}><Input placeholder="请输入姓名" /></Form.Item>
                     <Form.Item name="email" label="邮箱" rules={[{required: true, type: 'email', message: '请输入有效邮箱'}]}><Input placeholder="name@example.com" /></Form.Item>
                     <Form.Item name="phone" label="联系电话" rules={[{required: true, message: '请输入联系电话'}]}><Input placeholder="请输入联系电话" /></Form.Item>
-                    <Form.Item name="role" label="角色" rules={[{required: true}]}><Select options={['运营专员', '内容编辑', '数据分析师', '访客'].map((value) => ({value}))} /></Form.Item>
-                    <Form.Item name="status" label="状态" rules={[{required: true}]}><Select options={['正常', '待审核', '已禁用'].map((value) => ({value}))} /></Form.Item>
+                    <Form.Item name="role" label="角色" rules={[{required: true}]}><Select options={['运营专员', '内容编辑', '数据分析师', '访客'].map(value => ({value}))} /></Form.Item>
+                    <Form.Item name="status" label="状态" rules={[{required: true}]}><Select options={['正常', '待审核', '已禁用'].map(value => ({value}))} /></Form.Item>
                 </Form>
             </Modal>
         </Space>
