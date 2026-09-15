@@ -38,8 +38,8 @@ button, input, textarea, select { font: inherit; }
 .account-button { display: flex; align-items: center; gap: 8px; color: #334155; }
 .account-avatar, .activity-avatar { background: #e0eaff; color: #2563eb; font-weight: 700; }
 .account-name { font-weight: 600; }
-.admin-content { width: 100%; min-width: 0; padding: 8px 16px 16px; }
-.workspace-tabs > .ant-tabs-nav { position: sticky; top: 0; z-index: 5; margin: 0 -16px 12px; padding: 0 16px; background: #f3f6fa; }
+.admin-content { width: 100%; min-width: 0; padding: 8px; }
+.workspace-tabs > .ant-tabs-nav { position: sticky; top: 0; z-index: 5; margin: 0 -8px 12px; padding: 0 16px; background: #f3f6fa; }
 .workspace-tabs .ant-tabs-nav::before { border-bottom-color: #d8e1ec; }
 .workspace-tabs .ant-tabs-nav-wrap { overflow-x: auto !important; scrollbar-width: thin; }
 .workspace-tabs .ant-tabs-nav-list { flex-wrap: nowrap; min-width: max-content; }
