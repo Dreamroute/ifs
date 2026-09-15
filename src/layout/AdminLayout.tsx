@@ -32,12 +32,12 @@ interface WorkspaceTab {
 }
 
 const navigation: WorkspaceTab[] = [
-    {key: '/dashboard', icon: <AppstoreOutlined />, label: '仪表盘', closable: false, content: <DashboardPage />},
-    {key: '/users', icon: <TeamOutlined />, label: '用户管理', closable: true, content: <UsersPage />},
-    {key: '/orders', icon: <ShoppingCartOutlined />, label: '业务订单', closable: true, content: <OrdersPage />},
-    {key: '/content', icon: <FileTextOutlined />, label: '内容管理', closable: true, content: <ContentPage />},
-    {key: '/roles', icon: <UserOutlined />, label: '角色权限', closable: true, content: <RolesPage />},
-    {key: '/settings', icon: <SettingOutlined />, label: '系统设置', closable: true, content: <SettingsPage />},
+    {key: '/dashboard', icon: <AppstoreOutlined/>, label: '仪表盘', closable: false, content: <DashboardPage/>},
+    {key: '/users', icon: <TeamOutlined/>, label: '用户管理', closable: true, content: <UsersPage/>},
+    {key: '/orders', icon: <ShoppingCartOutlined/>, label: '业务订单', closable: true, content: <OrdersPage/>},
+    {key: '/content', icon: <FileTextOutlined/>, label: '内容管理', closable: true, content: <ContentPage/>},
+    {key: '/roles', icon: <UserOutlined/>, label: '角色权限', closable: true, content: <RolesPage/>},
+    {key: '/settings', icon: <SettingOutlined/>, label: '系统设置', closable: true, content: <SettingsPage/>},
 ]
 
 const dashboardTab = navigation[0]
@@ -55,9 +55,9 @@ export default function AdminLayout() {
     const current = navigation.find((item) => item.key === location.pathname) ?? dashboardTab
     const [tabs, setTabs] = useState<WorkspaceTab[]>(() => current.key === dashboardTab.key ? [dashboardTab] : [dashboardTab, current])
     const breadcrumbItems = useMemo(() => [
-        {title: <Link to="/dashboard">运营管理</Link>},
+        {title: <Link to="/dashboard">首页</Link>},
         {title: current.label},
-    ], [current.label])
+    ], [])
 
     const workspaceTabs = tabs.some((item) => item.key === current.key) ? tabs : [...tabs, current]
 
@@ -95,7 +95,9 @@ export default function AdminLayout() {
         key: tab.key,
         label: <Space size={6}>{tab.icon}<span>{tab.label}</span></Space>,
         closable: tab.closable,
-        children: <div className="workspace-page"><div className="page-heading"></div>{tab.content}</div>,
+        children: <div className="workspace-page">
+            <div className="page-heading"></div>
+            {tab.content}</div>,
     }))
 
     const tabActions: MenuProps['items'] = [
@@ -112,13 +114,13 @@ export default function AdminLayout() {
                         {!collapsed && <span>One Ops</span>}
                     </div>
                     <Space size={16}>
-                        <Button type="text" className="collapse-trigger" aria-label="切换侧栏" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} onClick={() => setCollapsed((value) => !value)} />
-                        <Breadcrumb items={breadcrumbItems} />
+                        <Button type="text" className="collapse-trigger" aria-label="切换侧栏" icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>} onClick={() => setCollapsed((value) => !value)}/>
+                        <Breadcrumb items={breadcrumbItems}/>
                     </Space>
                 </div>
                 <Space size={20}>
                     <Badge dot offset={[-2, 2]}>
-                        <Button type="text" className="header-icon" aria-label="通知" icon={<BellOutlined />} />
+                        <Button type="text" className="header-icon" aria-label="通知" icon={<BellOutlined/>}/>
                     </Badge>
                     <Dropdown menu={{items: profileItems}} placement="bottomRight">
                         <Button type="text" className="account-button">
@@ -140,8 +142,7 @@ export default function AdminLayout() {
                     />
                     {!collapsed && <div className="sider-footer">© 2026 OneOps</div>}
                 </Sider>
-                <Layout>
-                    <Content className="admin-content">
+                <Content className="admin-content">
                     <Tabs
                         activeKey={current.key}
                         className="workspace-tabs"
@@ -153,11 +154,10 @@ export default function AdminLayout() {
                         onEdit={(targetKey, action) => {
                             if (action === 'remove' && typeof targetKey === 'string') closeTab(targetKey)
                         }}
-                        tabBarExtraContent={{right: <Dropdown menu={{items: tabActions}} placement="bottomRight"><Button type="text" className="tab-actions" aria-label="页签操作" icon={<MoreOutlined />} /></Dropdown>}}
+                        tabBarExtraContent={{right: <Dropdown menu={{items: tabActions}} placement="bottomRight"><Button type="text" className="tab-actions" aria-label="页签操作" icon={<MoreOutlined/>}/></Dropdown>}}
                     />
-                    </Content>
-                    <Outlet />
-                </Layout>
+                </Content>
+                <Outlet/>
             </Layout>
         </Layout>
     )

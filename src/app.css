@@ -1,8 +1,14 @@
-:root { color: #172033; background: #f3f6fa; font-synthesis: none; }
+html,
+body,
+#root {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; background: #f3f6fa; }
+
 button, input, textarea, select { font: inherit; }
-.admin-shell { min-height: 100vh; background: #f3f6fa; }
+.admin-shell { min-height: 100vh;}
 .admin-shell > .ant-layout, .admin-body { min-width: 0; }
 .admin-body { min-height: calc(100vh - 64px); }
 .admin-sider { position: sticky !important; top: 64px; height: calc(100vh - 64px); overflow: auto; background: #fff !important; border-right: 1px solid #dce5ef; }
@@ -13,13 +19,26 @@ button, input, textarea, select { font: inherit; }
 .main-menu.ant-menu-light .ant-menu-item { margin-block: 4px; width: calc(100% - 2px); color: #52647a; border-radius: 7px; }
 .main-menu.ant-menu-light .ant-menu-item-selected { background: #eaf1ff !important; color: #2563eb; font-weight: 600; }
 .sider-footer { position: absolute; bottom: 20px; left: 24px; color: #94a3b8; font-size: 12px; }
-.admin-header { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; width: 100%; height: 64px; padding: 0 20px 0 0; background: #fff; border-bottom: 1px solid #dce5ef; }
+
+.admin-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 64px;
+    padding: 0 20px 0 0;
+    background: #fff;
+    border-bottom: 1px solid #dce5ef;
+}
 .header-left { display: flex; align-items: center; min-width: 0; }
 .collapse-trigger, .header-icon { color: #475569; font-size: 19px; }
 .account-button { display: flex; align-items: center; gap: 8px; color: #334155; }
 .account-avatar, .activity-avatar { background: #e0eaff; color: #2563eb; font-weight: 700; }
 .account-name { font-weight: 600; }
-.admin-content { width: 100%; min-width: 0; padding: 12px 16px 16px; }
+.admin-content { width: 100%; min-width: 0; padding: 8px 16px 16px; }
 .workspace-tabs > .ant-tabs-nav { position: sticky; top: 0; z-index: 5; margin: 0 -16px 12px; padding: 0 16px; background: #f3f6fa; }
 .workspace-tabs .ant-tabs-nav::before { border-bottom-color: #d8e1ec; }
 .workspace-tabs .ant-tabs-nav-wrap { overflow-x: auto !important; scrollbar-width: thin; }
